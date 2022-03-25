@@ -32,7 +32,9 @@ const quiz = [
 		q:'¿En qué continente está Ecuador?',
 		options:['Asia','América','Europa','África'],
 		answer:1
-	},
+	} ]
+
+	const quiz1 = [
 
 	{ //Level 2  1/5
 		q:'¿Qué tipo de animal es la ballena?',
@@ -58,7 +60,10 @@ const quiz = [
 		q:'¿Cómo se denomina el resultado de la multiplicación?',
 		options:['Resto','Binomio','Producto','Resultado'],
 		answer:2
-	},
+	}
+	]
+
+	const quiz2 = [
 
 	{ //Level 3  1/5
 		q:'¿Cuál es el océano más grande?',
@@ -84,7 +89,10 @@ const quiz = [
 		q:'¿Cuál es el disco más vendido de la historia?',
 		options:['Bohemian Rapsody','We will rock you','Thriller','Stand by me'],
 		answer:2
-	},
+	}
+	]
+
+	const quiz3 = [
 
 	{ //Level 4  1/5
 		q:'¿Quién es el famoso Rey de Rock en los Estados Unidos?',
@@ -110,7 +118,10 @@ const quiz = [
 		q:'¿Dónde se encuentra la capa de ozono?',
 		options:['Atmósfera','Hidosfera','Litosfera','Estratosfera'],
 		answer:0
-	},
+	}
+	]
+
+	const quiz4 = [
 
 	{ //Level 5  1/5
 		q:'¿Cuándo empezó la Primera Guerra Mundial?',
@@ -138,5 +149,6 @@ const quiz = [
 		answer:0
 	}
 ]
+
 // KEIVYS JOSE RODRIGUEZ GONZALEZ
 // IG: _krod17
