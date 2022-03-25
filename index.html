@@ -1,0 +1,75 @@
+<!-- 
+KEIVYS JOSE RODRIGUEZ GONZALEZ
+IG: _krod17
+-->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Juega & Gana</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<!-- Pagina Principal -->
+	<div class="inicio default-box">
+		<h3>Instrucciones para ganar:</h3>
+		<p>Responde correctamente <span class="total-preguntas">5</span> preguntas.</p>
+		<p>Premio mayor: $1.000.000</p>
+		<button type="button" class="btn" onclick="startQuiz()">Comenzar</button>
+	</div>
+	<!-- PREGUNTAS -->
+	<div class="quiz-box default-box hide">
+		<div class="numero-pregunta">
+			
+		</div>
+		<!-- TEXTO DE LA PREGUNTA -->
+		<div class="texto-pregunta">
+			
+		</div>
+		<!-- OPCIONES DE LA PREGUNTA -->
+		<div class="contenedor-opc">
+			
+		</div>
+		<!-- BOTON SIGUIENTE -->
+		<div class="siguiente-btn">
+			<button type="button" class="btn" onclick="next()">Siguiente</button>
+			<!-- BOTON RENDIRSE -->
+			<button type="button" class="btn" onclick="rendirse()">Rendirse</button>
+		</div>
+		<!-- CONTADOR DE ERRORES O ACIERTOS -->
+		<div class="indicador-respuesta">
+		</div>
+	</div>
+	<!-- SCORE -->
+	<div class="resultados default-box hide">
+		<h1>Resultados Juega & Gana</h1>
+		<table>
+			<tr>
+				<td>Total preguntas</td>
+				<td><span class="total-preguntas"></span></td>
+			</tr>
+			<tr>
+				<td>Intentos</td>
+				<td><span class="total-intentos"></span></td>
+			</tr>
+			<tr>
+				<td>Ganancias</td>
+				<td><span class="total-ganancias"></span></td>
+			</tr>
+			<tr>
+				<td>Score</td>
+				<td><span class="total-score"></span></td>
+			</tr>
+		</table>
+		<!-- <button type="button" class="btn" onclick="reintentar()">Intentar de nuevo</button> -->
+		<button type="button" class="btn" onclick="goHome()">Inicio</button>
+	</div>
+<script src="js/preguntas.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+<!-- 
+KEIVYS JOSE RODRIGUEZ GONZALEZ
+IG: _krod17
+-->

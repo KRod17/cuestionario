@@ -1,0 +1,234 @@
+/* KEIVYS JOSE RODRIGUEZ GONZALEZ */
+/* IG: _krod17 */
+/*ESTILO DEL CUERPO DE LA PAGINA*/
+body{
+
+	margin:  0;
+	font-size: 16px;
+	background-color: lightsteelblue;
+	font-weight: 400;
+	font-family: sans-serif;
+}
+/* ESTILOS DE TODA LA PAGINA */
+*{
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	outline: none;
+}
+/* ESTILOS DE LAS CAJAS POR DEFECTO */
+.default-box{
+	max-width: 700px;
+	background-color: slategray;
+	margin: 40px auto;
+	padding: 30px;
+	border-radius: 20px;
+	animation: fadeInRight 1s ease;
+}
+/* ANIMACION DE LAS CAJAS POR DEFECTO */
+@keyframes fadeInRight{
+	0%{
+		transform: translateX(40px);
+		opacity: 0;
+	}
+	100%{
+		transform: translateX(0px);
+		opacity: 1;
+	}
+}
+
+.default-box: :before,
+.default-box: :after{
+	content: '';
+	clear: both;
+	display: table;
+}
+
+.default-box.hide{
+	display: none;
+}
+
+.inicio h3{
+	font-size: 16px;
+	color: #fff;
+	font-weight: 500;
+	margin-bottom: 15px;
+	line-height: 25px;
+}
+
+.inicio p{
+
+	font-size: 18px;
+	margin-bottom: 10px;
+	line-height: 22px;
+	color: #fff;
+	font-weight: 400;
+}
+
+.inicio p span{
+	font-weight: 500px;
+	font-size: 25px;
+}
+
+.inicio .btn{
+	margin-top: 30px;
+}
+
+/* ESTILO DE LOS BOTONES */
+.btn{
+	padding: 15px 45px;
+	background-color: lightblue;
+	color: black;
+	border: none;
+	border-radius: 20px;
+	font-family: sans-serif;
+	font-size: 20px;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.quiz-box .numero-pregunta,
+.quiz-box .texto-pregunta,
+.quiz-box .contenedor-opc,
+.quiz-box .siguiente-btn,
+.quiz-box .indicador-respuesta{
+	width: 100%;
+} 
+
+.quiz-box .numero-pregunta{
+	font-size: 18px;
+	color: lightblue;
+	font-weight: 600;
+	border-bottom: 2px solid #ccc;
+	padding-bottom: 10px;
+	line-height: 25px;
+}
+.quiz-box .texto-pregunta{
+	font-size: 25px ;
+	color: #fff;
+	line-height: 28px;
+	font-weight: 400;
+	padding: 20px 0;
+	margin: 0;
+	opacity: 0;
+	animation:fadeIn 1s ease forwards;
+	position: relative;
+	overflow: hidden;
+}
+
+.quiz-box .contenedor-opc .opcion{
+	background-color: #ccc;
+	padding: 13px 15px;
+	font-size: 18px;
+	line-height: 22px;
+	color: black;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	cursor: pointer;
+	text-transform: capitalize;
+	opacity: 0;
+	animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+.quiz-box .contenedor-opc .opcion.correct{
+
+	color: white;
+	background-color: green;
+}
+
+@keyframes slideInLeft{
+	0%{
+		transform: translateX(-100%);
+		background-color: green;
+	}
+}
+
+.quiz-box .contenedor-opc .opcion.respondida{
+	pointer-events: none;
+}
+
+.quiz-box .contenedor-opc .opcion.wrong{
+	color: white;
+	background-color: red;
+}
+
+.quiz-box .btn{
+	margin: 30px 0;
+}
+
+.quiz-box .indicador-respuesta{
+	border-top: 2px solid #ccc;
+}
+
+.quiz-box .indicador-respuesta div{
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	background-color: #ccc;
+	border-radius: 50%;
+	margin-right: 3px;
+	margin-top: 10px;
+}
+
+.quiz-box .indicador-respuesta div.correct{
+	background-color: green;
+	background-image: url("../img/correct.png");
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.quiz-box .indicador-respuesta div.wrong{
+	background-color: red;
+	background-image: url("../img/wrong.png");
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.quiz-box .indicador-respuesta div.wrong{
+	background-color: red;
+}
+
+.resultados{
+	text-align: center;
+}
+
+.resultados.hide{
+	display: none;
+}
+
+.resultados h1{
+	font-size: 36px;
+	line-height: 42px;
+	color: lightblue;
+
+}
+.resultados table{
+	width: 100%;
+	border-collapse: collapse;
+	margin: 30px 0;
+}
+.resultados table td{
+	border: 3px solid #ccc;
+	padding: 8px 15px;
+	font-weight: 500;
+	color: #fff;
+	width: 50%;
+	text-align: left;
+	font-size: 20px;
+}
+.resultados .btn{
+	margin-right: 20px;
+}
+/* KEIVYS JOSE RODRIGUEZ GONZALEZ */
+/* IG: _krod17 */
