@@ -16,14 +16,46 @@ let disponiblePregunta = [];
 let opcDisponible = [];
 let respuestaCorrecta=0;
 let intentos = 0;
-let level = 1; //PARA NIVELES
+let level = 0;
 
 // COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
+
 function setDisponiblePregunta(){
+		
 	const totalPregunta = quiz.length;
+
+	let getLevel = level;
+	switch(getLevel){
+		case 0:
 		for(let i=0;i<totalPregunta;i++){
 		disponiblePregunta.push(quiz[i]);
+		break;
 		}
+
+		case 1:
+		for(let j=0;j<totalPregunta;j++){
+			disponiblePregunta.push(quiz1[j]);
+		break;
+		}
+
+		case 2:
+		for(let k=0;k<totalPregunta;k++){
+			disponiblePregunta.push(quiz2[k]);
+		break;
+		}
+
+		case 3:
+		for(let x=0;x<totalPregunta;x++){
+			disponiblePregunta.push(quiz3[x]);
+		break;
+		}
+
+		case 2:
+		for(let y=0;y<totalPregunta;y++){
+			disponiblePregunta.push(quiz2[y]);
+		break;
+		}
+	}
 }
 // CONTADOR DE PREGUNTAS
 function getNuevaPregunta(){
@@ -74,7 +106,7 @@ function getNuevaPregunta(){
 	}
 
 	contadorPregunta++;
-	
+
 }
 
 function getResult(element){
@@ -120,9 +152,8 @@ function next(){
 	if(contadorPregunta === quiz.length){
 		quizFin();
 	} else{
-		nivel();
 		getNuevaPregunta();
-	}
+	}nivel();
 }
 
 function quizFin(){
@@ -133,6 +164,7 @@ function quizFin(){
 	// MUESTRA LA CAJA DE RESULTADO
 	resultBox.classList.remove("hide");
 	quizResultado();
+	level= 0;
 }
 
 // OBTENER LOS RESULTADOS
@@ -149,7 +181,7 @@ function resetQuiz(){
 	
 	contadorPregunta = 0;
 	respuestaCorrecta=0;
-	level = 0;
+	//level = 0;
 }
 
 function rendirse(){
@@ -181,14 +213,13 @@ function startQuiz(){
 
 	// LLAMAREMOS A LA NUEVA PREGUNTA
 	getNuevaPregunta();
-
+	
 	// CREA INDICADORES DE RESPUESTA
 	answerIndicador();
+	nivel();
 }
 
 function nivel(){
 console.log(level);
 		level++;
-
-		}
-
+}
