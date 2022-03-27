@@ -37,8 +37,8 @@ body{
 	}
 }
 
-.default-box: :before,
-.default-box: :after{
+.default-box::before,
+.default-box::after{
 	content: '';
 	clear: both;
 	display: table;
