@@ -4,6 +4,7 @@
 
 - 25 preguntas de manera aleatorias
 - Te llevas el premio maximo respondiendo 5 preguntas
+- 3 Preguntas erroneas y se pierde el acumulado
 
 ![image](https://user-images.githubusercontent.com/91706664/160150186-f143416d-888c-4fbe-9c21-7c2a05ffa02a.png)
 ![image](https://user-images.githubusercontent.com/91706664/160155318-f33b709f-7d2a-4373-9a36-2c2e7b8cd09e.png)
