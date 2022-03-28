@@ -17,6 +17,7 @@ let opcDisponible = [];
 let respuestaCorrecta=0;
 let intentos = 0;
 let level = 0;
+let badAnswer = 0;
 
 // COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
 
@@ -77,9 +78,7 @@ function getNuevaPregunta(){
 		opcContenedor.appendChild(option)
 		option.setAttribute("onclick","getResult(this)");
 	}
-
-	contadorPregunta++;
-
+		contadorPregunta++;
 }
 
 function getResult(element){
@@ -89,16 +88,17 @@ function getResult(element){
 		// CAMBIAR A VERDE LA OPCION CORRECTA Y COLOCA UNA MARCA
 		element.classList.add("correct");
 		updateAnswerIndicador("correct");
-
 		respuestaCorrecta++;
 	}
 	else{
-
+		
 		//CAMBIAR A ROJO LA OPCION ERRONEA Y COLOCA UNA MARCA
 		element.classList.add("wrong");
 		updateAnswerIndicador("wrong");
+		badAnswer++;
 	}
-	stopClick();
+	badFinished();
+	stopClick();	
 }
 
 // NO SE PUEDEN ELEGIR MAS OPCIONES
@@ -126,7 +126,8 @@ function next(){
 		quizFin();
 	} else{
 		getNuevaPregunta();
-	}nivel();
+		}
+	nivel();
 }
 
 function quizFin(){
@@ -173,7 +174,19 @@ function goHome(){
 	resetQuiz();	
 }
 
+function badFinished(){
+
+	if(badAnswer === 3){
+		
+		rendirse();
+		badAnswer = 0;
+		
+	}
+}
+
 function startQuiz(){
+
+	badFinished();
 
 	// OCULTA LA CAJA DE INICIO
 	inicioBox.classList.add("hide");
@@ -193,6 +206,6 @@ function startQuiz(){
 }
 
 function nivel(){
-console.log(level);
+console.log(badAnswer);
 		level++;
 }
