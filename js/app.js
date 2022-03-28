@@ -18,6 +18,7 @@ let respuestaCorrecta=0;
 let intentos = 0;
 let level = 0;
 let badAnswer = 0;
+let cuota = 200000;
 
 // COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
 
@@ -146,7 +147,7 @@ function quizResultado(){
 	intentos++;
 	resultBox.querySelector(".total-preguntas").innerHTML = quiz.length;
 	resultBox.querySelector(".total-intentos").innerHTML = intentos;
-	const ganancias = respuestaCorrecta * 200000;
+	const ganancias = respuestaCorrecta * cuota;
 	resultBox.querySelector(".total-ganancias").innerHTML = "$ " + ganancias;
 	resultBox.querySelector(".total-score").innerHTML = respuestaCorrecta + " / " + quiz.length;
 }
@@ -177,7 +178,7 @@ function goHome(){
 function badFinished(){
 
 	if(badAnswer === 3){
-		
+		cuota = 0;
 		rendirse();
 		badAnswer = 0;
 		
