@@ -22,5 +22,5 @@
 * Ingresar nombre de usuario
 * Mostrar en el Score el nombre del último participante
 * Cronometro
-* Al tercer intento pierdes el acumulado
+* Al tercer intento pierdes el acumulado (Mejora incorporada)
 
