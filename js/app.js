@@ -25,36 +25,9 @@ function setDisponiblePregunta(){
 	const totalPregunta = quiz.length;
 
 	let getLevel = level;
-	switch(getLevel){
-		case 0:
 		for(let i=0;i<totalPregunta;i++){
 		disponiblePregunta.push(quiz[i]);
-		break;
-		}
-
-		case 1:
-		for(let j=0;j<totalPregunta;j++){
-			disponiblePregunta.push(quiz1[j]);
-		break;
-		}
-
-		case 2:
-		for(let k=0;k<totalPregunta;k++){
-			disponiblePregunta.push(quiz2[k]);
-		break;
-		}
-
-		case 3:
-		for(let x=0;x<totalPregunta;x++){
-			disponiblePregunta.push(quiz3[x]);
-		break;
-		}
-
-		case 2:
-		for(let y=0;y<totalPregunta;y++){
-			disponiblePregunta.push(quiz2[y]);
-		break;
-		}
+		
 	}
 }
 // CONTADOR DE PREGUNTAS
