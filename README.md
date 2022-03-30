@@ -18,7 +18,7 @@
 * CSS
 * JavaScript
 
-# Poxima mejora:
+# Poximas mejoras:
 
 * Implementar niveles de dificultad (Mejora incorporada)
 * Ingresar nombre de usuario
@@ -26,3 +26,8 @@
 * Cronometro
 * Al tercer intento pierdes el acumulado (Mejora incorporada)
 
+
+
+# Made by:
+<b>KEIVYS JOSE RODRIGUEZ GONZALEZ<br>
+IG: _krod17</b>
