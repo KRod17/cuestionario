@@ -2,6 +2,7 @@
 KEIVYS JOSE RODRIGUEZ GONZALEZ
 IG: _krod17
 */
+//CONSTANTES OBTENIDAS DEL HTML
 const numeroPregunta = document.querySelector(".numero-pregunta");
 const textoPregunta = document.querySelector(".texto-pregunta");
 const opcContenedor = document.querySelector(".contenedor-opc");
@@ -9,23 +10,26 @@ const answerIndicadorContenedor = document.querySelector(".indicador-respuesta")
 const inicioBox = document.querySelector(".inicio");
 const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".resultados");
-
+const cronometro1 = document.querySelector(".cronometro");
+const color_fondo = document.getElementById('color_fondo')
+const numero = document.getElementById('numero')
+//CONSTANTES PARA LOS NIVELES DE LAS PREGUNTAS
 const nivel1 = quiz;
 const nivel2 = quiz1;
 const nivel3 = quiz2;
 const nivel4 = quiz3;
 const nivel5 = quiz4;
-
+//VARIABLES 
 let contadorPregunta = 0;
-let actualPregunta;
-let disponiblePregunta = [];
+let preguntaActual;
+let preguntaDisponible = [];
 let opcDisponible = [];
 let respuestaCorrecta=0;
 let intentos = 0;
 let level = 1;
 let badAnswer = 0;
 let cuota = 200000;
-
+let stopContador = 6;
 // COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
 function setDisponiblePregunta(){	
 	upNivel();
@@ -35,14 +39,14 @@ function getNuevaPregunta(){
 	// NUMERO DE PREGUNTA
 	numeroPregunta.innerHTML = "Pregunta " + (contadorPregunta + 1) + " de " + quiz.length;
 	// OBTENER PREGUNTA ALEATORIA
-	const indexPregunta = disponiblePregunta[Math.floor(Math.random() * disponiblePregunta.length)]
-	actualPregunta = indexPregunta;
-	textoPregunta.innerHTML = actualPregunta.q;
+	const indexPregunta = preguntaDisponible[Math.floor(Math.random() * preguntaDisponible.length)]
+	preguntaActual = indexPregunta;
+	textoPregunta.innerHTML = preguntaActual.q;
 	// OBTENER LA POSICIÓN DEL INDEX DEL ARRAY
-	const index1 = disponiblePregunta.indexOf(indexPregunta);
+	const index1 = preguntaDisponible.indexOf(indexPregunta);
 	// REMUEVE EL INDEX DE LA PREGUNTA DE LAS PREGUNTAS DISPONIBLES, LA PREGUNTA NO SE REPETIRÁ
-	disponiblePregunta.splice(index1,1);
-	const opcLen = actualPregunta.options.length
+	preguntaDisponible.splice(index1,1);
+	const opcLen = preguntaActual.options.length
 	// COLOCA LAS OPCIONES EN EL ARRAY DE OPCIONES DISPONIBLE
 	for(let i=0;i<opcLen; i++){
 		opcDisponible.push(i);
@@ -60,7 +64,7 @@ function getNuevaPregunta(){
 		opcDisponible.splice(index2,1);
 		
 		const option = document.createElement("div");
-		option.innerHTML = actualPregunta.options[optionIndex];
+		option.innerHTML = preguntaActual.options[optionIndex];
 		option.id = optionIndex;
 		option.style.animationDelay = animacion + 's';
 		animacion = animacion + 0.5;
@@ -68,12 +72,11 @@ function getNuevaPregunta(){
 		opcContenedor.appendChild(option)
 		option.setAttribute("onclick","getResult(this)");
 	}
-		contadorPregunta++;	
+		contadorPregunta++;
 }
-
 function getResult(element){
 	const id = parseInt(element.id);
-	if(id===actualPregunta.answer){
+	if(id===preguntaActual.answer){
 		// CAMBIAR A VERDE LA OPCION CORRECTA Y COLOCA UNA MARCA
 		element.classList.add("correct");
 		updateAnswerIndicador("correct");
@@ -89,11 +92,9 @@ function getResult(element){
 		level++;
 		upNivel();
 	}
-	badFinished();
-	stopClick();
-	
+	gameOver();
+	stopClick();	
 }
-
 // NO SE PUEDEN ELEGIR MAS OPCIONES
 function stopClick(){
 	const opcLen = opcContenedor.children.length;
@@ -101,7 +102,7 @@ function stopClick(){
 		opcContenedor.children[i].classList.add("respondida");
 	}
 }
-
+//INDICADOR DE RESPUESTA
 function answerIndicador(){
 	answerIndicadorContenedor.innerHTML = '';
 	const totalPregunta = quiz.length;
@@ -113,15 +114,14 @@ function answerIndicador(){
 function updateAnswerIndicador(markType){
 	answerIndicadorContenedor.children[contadorPregunta-1].classList.add(markType);
 }
-
+//FUNCION PARA CUANDO DAN CLICK EN "SIGUIENTE" 
 function next(){
 	if(contadorPregunta === quiz.length){
 		quizFin();
-	} else{
+	} else{	
 		getNuevaPregunta();
 	}
 }
-
 function quizFin(){
 	//OCULTA LA CAJA DEL QUIZ
 	quizBox.classList.add("hide");
@@ -129,12 +129,13 @@ function quizFin(){
 	resultBox.classList.remove("hide");
 	quizResultado();
 }
-
 // OBTENER LOS RESULTADOS
 function quizResultado(){
 	intentos++;
 	resultBox.querySelector(".total-preguntas").innerHTML = quiz.length;
 	resultBox.querySelector(".total-intentos").innerHTML = intentos;
+	console.log(respuestaCorrecta);
+	console.log(cuota);
 	const ganancias = respuestaCorrecta * cuota;
 	resultBox.querySelector(".total-ganancias").innerHTML = "$ " + ganancias;
 	resultBox.querySelector(".total-score").innerHTML = respuestaCorrecta + " / " + quiz.length;
@@ -147,7 +148,7 @@ function resetQuiz(){
 	contadorPregunta = 0;
 	respuestaCorrecta=0;
 }
-
+// FUNCION PARA EL BOTON DE RENDIRSE
 function rendirse(){
 	quizBox.classList.add("hide");
 	resultBox.classList.remove("hide");
@@ -161,8 +162,8 @@ function goHome(){
 	inicioBox.classList.remove("hide");
 	resetQuiz();	
 }
-
-function badFinished(){
+// FINALIZA EL JUEGO AL DAR CLICK EN LA TERCERA PREGUNTA ERRONEA
+function gameOver(){
 	if(badAnswer === 3){
 		cuota = 0;
 		rendirse();
@@ -170,13 +171,14 @@ function badFinished(){
 		contadorPregunta=0;
 	}
 }
-
 function startQuiz(){
-	badFinished();
+	gameOver();
 	// OCULTA LA CAJA DE INICIO
 	inicioBox.classList.add("hide");
 	// MUESTRA LA CAJA DEL QUIZ
 	quizBox.classList.remove("hide");
+	// MUESTRA EL CONTADOR
+	cronometro1.classList.remove("hide");
 	// CAMBIAREMOS TODAS LAS PREGUNTAS EN EL ARRAY
 	setDisponiblePregunta();
 	// LLAMAREMOS A LA NUEVA PREGUNTA
@@ -186,36 +188,36 @@ function startQuiz(){
 }
 
 function upNivel(){
-	
+	//console.log(level)
 	switch(level){
 		case 1:
 			const totalPregunta = quiz.length;
 			for(let i=0;i<totalPregunta;i++){
-				disponiblePregunta.push(nivel1[i]);
+				preguntaDisponible.push(nivel1[i]);
 				}
 			break;
 		case 2:
 			const totalPregunta1 = quiz.length;
 			for(let i=0;i<totalPregunta1;i++){
-				disponiblePregunta.push(nivel2[i]);
+				preguntaDisponible.push(nivel2[i]);
 			}
 			break;
 		case 3:
 			const totalPregunta2 = quiz.length;
 			for(let i=0;i<totalPregunta2;i++){
-				disponiblePregunta.push(nivel3[i]);
+				preguntaDisponible.push(nivel3[i]);
 				}
 			break;
 		case 4:
 			const totalPregunta3 = quiz.length;
 			for(let i=0;i<totalPregunta3;i++){
-				disponiblePregunta.push(nivel4[i]);
+				preguntaDisponible.push(nivel4[i]);
 				}
 			break;
 		case 5:
 			const totalPregunta4 = quiz.length;
 			for(let i=0;i<totalPregunta4;i++){
-				disponiblePregunta.push(nivel5[i]);
+				preguntaDisponible.push(nivel5[i]);
 				}
 			break;
 	}
