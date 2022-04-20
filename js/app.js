@@ -12,28 +12,29 @@ const quizBox = document.querySelector(".quiz-box");
 const resultBox = document.querySelector(".resultados");
 const cronometro1 = document.querySelector(".cronometro");
 const color_fondo = document.getElementById('color_fondo')
-const numero = document.getElementById('numero')
+const topResultados = document.querySelector(".top");
+
 //CONSTANTES PARA LOS NIVELES DE LAS PREGUNTAS
 const nivel1 = quiz;
 const nivel2 = quiz1;
 const nivel3 = quiz2;
 const nivel4 = quiz3;
 const nivel5 = quiz4;
+
 //VARIABLES 
 let contadorPregunta = 0;
 let preguntaActual;
 let preguntaDisponible = [];
 let opcDisponible = [];
 let respuestaCorrecta=0;
-let intentos = 0;
+let intentos = 1;
 let level = 1;
-let badAnswer = 0;
+let respuestaIncorrecta = 0;
 let cuota = 200000;
 let stopContador = 6;
-// COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
-function setDisponiblePregunta(){	
-	upNivel();
-}
+let nombres = [];
+let premios = [];
+
 // CONTADOR DE PREGUNTAS
 function getNuevaPregunta(){
 	// NUMERO DE PREGUNTA
@@ -62,7 +63,6 @@ function getNuevaPregunta(){
 		const index2 = opcDisponible.indexOf(optionIndex);
 		// REMUEVE EL 'optionIndex' DE 'disponiblePregunta', LA OPCION NO SE REPETIRÁ
 		opcDisponible.splice(index2,1);
-		
 		const option = document.createElement("div");
 		option.innerHTML = preguntaActual.options[optionIndex];
 		option.id = optionIndex;
@@ -82,15 +82,15 @@ function getResult(element){
 		updateAnswerIndicador("correct");
 		respuestaCorrecta++;
 		level++;
-		upNivel();
+		subirDeCategoria();
 	}
 	else{	
 		//CAMBIAR A ROJO LA OPCION ERRONEA Y COLOCA UNA MARCA
 		element.classList.add("wrong");
 		updateAnswerIndicador("wrong");
-		badAnswer++;
+		respuestaIncorrecta++;
 		level++;
-		upNivel();
+		subirDeCategoria();
 	}
 	gameOver();
 	stopClick();	
@@ -131,23 +131,19 @@ function quizFin(){
 }
 // OBTENER LOS RESULTADOS
 function quizResultado(){
-	intentos++;
 	resultBox.querySelector(".total-preguntas").innerHTML = quiz.length;
 	resultBox.querySelector(".total-intentos").innerHTML = intentos;
-	console.log(respuestaCorrecta);
-	console.log(cuota);
 	const ganancias = respuestaCorrecta * cuota;
+	premios.push(ganancias);
+	guardaPremio();
+	//intentos++;
 	resultBox.querySelector(".total-ganancias").innerHTML = "$ " + ganancias;
 	resultBox.querySelector(".total-score").innerHTML = respuestaCorrecta + " / " + quiz.length;
 	level=1;
 	contadorPregunta=0;
-	badAnswer=0;
+	respuestaIncorrecta=0;
 }
 
-function resetQuiz(){
-	contadorPregunta = 0;
-	respuestaCorrecta=0;
-}
 // FUNCION PARA EL BOTON DE RENDIRSE
 function rendirse(){
 	quizBox.classList.add("hide");
@@ -155,70 +151,130 @@ function rendirse(){
 	quizResultado();
 }
 
-function goHome(){
+function volverAlInicio(){
+	let resetIntentos = intentos;
+	console.log(intentos);
+	if(resetIntentos === 5){
+		intentos=1;
+		nombres = [];
+		premios = [];
+	}else{intentos++;}
 	// OCULTA EL RESULTADO DE LA CAJA
 	resultBox.classList.add("hide");
+	// OCULTA EL TOP FIVE
+	topResultados.classList.add("hide");
 	// MUESTRA LA CAJA DE PREGUNTAS
 	inicioBox.classList.remove("hide");
-	resetQuiz();	
+	contadorPregunta = 0;
+	respuestaCorrecta=0;	
 }
 // FINALIZA EL JUEGO AL DAR CLICK EN LA TERCERA PREGUNTA ERRONEA
 function gameOver(){
-	if(badAnswer === 3){
+	if(respuestaIncorrecta === 3){
 		cuota = 0;
 		rendirse();
-		badAnswer = 0;
+		respuestaIncorrecta = 0;
 		contadorPregunta=0;
 	}
 }
+function topFive(){
+	topResultados.classList.remove("hide");
+}
+
+function showTop(){
+	switch(intentos){
+		case 1:
+			topUsuarios.innerHTML = nombres[0];
+			break;
+		case 2:
+			topUsuarios1.innerHTML = nombres[1];
+			break;
+		case 3:
+			topUsuarios2.innerHTML = nombres[2];
+			break;
+		case 4:
+			topUsuarios3.innerHTML = nombres[3];
+			break;
+		case 5:
+			topUsuarios4.innerHTML = nombres[4];
+			break;
+	}
+}
+
+function guardaPremio(){
+	switch(intentos){
+		case 1:
+			topPremio.innerHTML = premios[0] + " $";
+			break;
+		case 2:
+			topPremio1.innerHTML = premios[1] + " $";
+			break;
+		case 3:
+			topPremio2.innerHTML = premios[2] + " $";
+			break;
+		case 4:
+			topPremio3.innerHTML = premios[3] + " $";
+			break;
+		case 5:
+			topPremio4.innerHTML = premios[4] + " $";
+			break;
+	}
+}
+
 function startQuiz(){
+
+	var txtValor = document.getElementById("txtNombre").value;
+	nombres.push(txtValor);
+	showTop();
 	gameOver();
 	// OCULTA LA CAJA DE INICIO
 	inicioBox.classList.add("hide");
 	// MUESTRA LA CAJA DEL QUIZ
 	quizBox.classList.remove("hide");
-	// MUESTRA EL CONTADOR
-	cronometro1.classList.remove("hide");
 	// CAMBIAREMOS TODAS LAS PREGUNTAS EN EL ARRAY
-	setDisponiblePregunta();
+	subirDeCategoria();
 	// LLAMAREMOS A LA NUEVA PREGUNTA
 	getNuevaPregunta();
 	// CREA INDICADORES DE RESPUESTA
 	answerIndicador();
 }
 
-function upNivel(){
-	//console.log(level)
+// COLOCAR LAS PREGUNTAS DISPONIBLES EN EL ARRAY
+function subirDeCategoria(){
 	switch(level){
 		case 1:
-			const totalPregunta = quiz.length;
-			for(let i=0;i<totalPregunta;i++){
+			const categoria = quiz.length;
+			for(let i=0;i<categoria;i++){
 				preguntaDisponible.push(nivel1[i]);
 				}
 			break;
 		case 2:
-			const totalPregunta1 = quiz.length;
-			for(let i=0;i<totalPregunta1;i++){
+			const categoria1 = quiz.length;
+			for(let i=0;i<categoria1;i++){
 				preguntaDisponible.push(nivel2[i]);
 			}
 			break;
 		case 3:
-			const totalPregunta2 = quiz.length;
-			for(let i=0;i<totalPregunta2;i++){
+			const categoria2 = quiz.length;
+			for(let i=0;i<categoria2;i++){
 				preguntaDisponible.push(nivel3[i]);
 				}
 			break;
 		case 4:
-			const totalPregunta3 = quiz.length;
-			for(let i=0;i<totalPregunta3;i++){
+			const categoria3 = quiz.length;
+			for(let i=0;i<categoria3;i++){
 				preguntaDisponible.push(nivel4[i]);
 				}
 			break;
 		case 5:
-			const totalPregunta4 = quiz.length;
-			for(let i=0;i<totalPregunta4;i++){
+			const categoria4 = quiz.length;
+			for(let i=0;i<categoria4;i++){
 				preguntaDisponible.push(nivel5[i]);
 				}
 			break;
 	}
 }
+/* 
+KEIVYS JOSE RODRIGUEZ GONZALEZ
+IG: _krod17
+*/
