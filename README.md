@@ -21,8 +21,8 @@
 # Poximas mejoras:
 
 * Implementar niveles de dificultad (Mejora incorporada)
-* Ingresar nombre de usuario
-* Mostrar en el Score el nombre del último participante
+* Ingresar nombre de usuario (Mejora incorporada)
+* Mostrar en el Score el nombre de los participantes (Mejora incorporada)
 * Cronometro
 * Al tercer intento pierdes el acumulado (Mejora incorporada)
 
