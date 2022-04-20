@@ -1,5 +1,7 @@
-/* KEIVYS JOSE RODRIGUEZ GONZALEZ */
-/* IG: _krod17 */
+/* 
+KEIVYS JOSE RODRIGUEZ GONZALEZ
+IG: _krod17
+*/
 /*ESTILO DEL CUERPO DE LA PAGINA*/
 body{
 
@@ -47,13 +49,16 @@ body{
 .default-box.hide{
 	display: none;
 }
-
-.inicio h3{
-	font-size: 16px;
+/* TITULO DE LA PAGINA DE INICIO */
+.inicio h1{
+	font-size: 45px;
 	color: #fff;
 	font-weight: 500;
-	margin-bottom: 15px;
+	margin-bottom: 50px;
 	line-height: 25px;
+	text-align: center;
+	text-shadow: -5px 5px 5px lightblue;
+	animation: fadeInRight 5s ease;
 }
 
 .inicio p{
@@ -70,10 +75,21 @@ body{
 	font-size: 25px;
 }
 
+#txtNombre{
+	width: 30%;
+	height: 30px;
+	text-align: center;
+	background-color: rgb(204, 199, 199);
+}
+/* CONF BOTON DE INICIO */
 .inicio .btn{
 	margin-top: 30px;
+	animation: fadeInRight 2s ease-in;	
 }
 
+.inicio .start{
+	text-align: center;	
+}
 /* ESTILO DE LOS BOTONES */
 .btn{
 	padding: 15px 45px;
@@ -93,6 +109,7 @@ body{
 .quiz-box .siguiente-btn,
 .quiz-box .indicador-respuesta{
 	width: 100%;
+	
 } 
 
 .quiz-box .numero-pregunta{
@@ -166,6 +183,7 @@ body{
 }
 
 .quiz-box .indicador-respuesta{
+	text-align: center;
 	border-top: 2px solid #ccc;
 }
 
@@ -199,7 +217,7 @@ body{
 	background-color: red;
 }
 
-.resultados{
+.resultados, .top{
 	text-align: center;
 }
 
@@ -207,28 +225,59 @@ body{
 	display: none;
 }
 
-.resultados h1{
+.tiempo.hide{
+	display: none;
+}
+
+.resultados h1, .top h1{
 	font-size: 36px;
 	line-height: 42px;
 	color: lightblue;
 
 }
-.resultados table{
+.resultados table, .top table{
 	width: 100%;
-	border-collapse: collapse;
+	/* border-collapse: collapse; */
 	margin: 30px 0;
+	align-content: center;
 }
-.resultados table td{
+.resultados table td, .top table td{
 	border: 3px solid #ccc;
 	padding: 8px 15px;
 	font-weight: 500;
 	color: #fff;
 	width: 50%;
-	text-align: left;
+	text-align: center;
 	font-size: 20px;
 }
 .resultados .btn{
 	margin-right: 20px;
+	align-content: left;
 }
-/* KEIVYS JOSE RODRIGUEZ GONZALEZ */
-/* IG: _krod17 */
+
+.color_fondo{
+	height: 0;
+	width: 100%;
+	background-color: rgb(15, 15, 131);
+	
+}
+
+.numero{
+	height: 10%;
+	width: 100%;
+	font-size: 5em;
+	font-family: sans-serif;
+	font-weight: bold;
+	color: #555;
+	position: relative;
+	mix-blend-mode: screen;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 0px;
+	border-radius: 50%;
+}
+/* 
+KEIVYS JOSE RODRIGUEZ GONZALEZ
+IG: _krod17
+*/
