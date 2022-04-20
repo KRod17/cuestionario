@@ -13,26 +13,24 @@ IG: _krod17
 <body>
 	<!-- Pagina Principal -->
 	<div class="inicio default-box">
-		<h3>Instrucciones para ganar:</h3>
+		<h1>Juega & Gana</h1>
 		<p>Responde correctamente <span class="total-preguntas">5</span> preguntas.</p>
 		<p>Premio mayor: $1.000.000</p>
-		<button type="button" class="btn" onclick="startQuiz()">Comenzar</button>
+		<p>Nombre: <input id="txtNombre" type="text" placeholder="Escribe tu nombre aquí*" required></p>
+		<div style="text-align: center;">
+			<button type="button" class="btn" onclick="startQuiz()">Comenzar</button>
+		</div>
 	</div>
 	<!-- PREGUNTAS -->
 	<div class="quiz-box default-box hide">
-		<div class="numero-pregunta">
-			
-		</div>
+		<div class="numero-pregunta"></div>
 		<!-- TEXTO DE LA PREGUNTA -->
-		<div class="texto-pregunta">
-			
-		</div>
+		<div class="texto-pregunta"></div>
 		<!-- OPCIONES DE LA PREGUNTA -->
-		<div class="contenedor-opc">
-			
-		</div>
-		<!-- BOTON SIGUIENTE -->
-		<div class="siguiente-btn">
+		<div class="contenedor-opc"></div>
+		<!-- BOTONES QUIZ -->
+		<div class="siguiente-btn" style="text-align: center;">
+			<!-- BOTON SIGUIENTE -->
 			<button type="button" class="btn" onclick="next()">Siguiente</button>
 			<!-- BOTON RENDIRSE -->
 			<button type="button" class="btn" onclick="rendirse()">Rendirse</button>
@@ -42,8 +40,8 @@ IG: _krod17
 		</div>
 	</div>
 	<!-- SCORE -->
-	<div class="resultados default-box hide">
-		<h1>Resultados Juega & Gana</h1>
+	<div class="resultados inicio default-box hide">
+		<h1 class="inicio">Resultados Juega & Gana</h1>
 		<table>
 			<tr>
 				<td>Total preguntas</td>
@@ -58,13 +56,45 @@ IG: _krod17
 				<td><span class="total-ganancias"></span></td>
 			</tr>
 			<tr>
-				<td>Score</td>
+				<td>Aciertos</td>
 				<td><span class="total-score"></span></td>
 			</tr>
 		</table>
-		<!-- <button type="button" class="btn" onclick="reintentar()">Intentar de nuevo</button> -->
-		<button type="button" class="btn" onclick="goHome()">Inicio</button>
+		<button type="button" class="btn" onclick="volverAlInicio()">Inicio</button>
+		<button type="button" class="btn" onclick="topFive()">Score</button>	
 	</div>
+	<!-- TOP -->
+	<div class="top inicio default-box hide">
+		<h1 class="inicio">Score</h1>
+		<table>
+			<tr>
+				<td>Nombre</td>
+				<td>Acumulado</td>
+			</tr>
+			<tr>
+				<td><span id="topUsuarios" class="topUsuarios "></span></td>
+				<td><span id="topPremio" class="hide"></span></td>
+			</tr>
+			<tr>
+				<td><span id="topUsuarios1" class="hide"></span></td>
+				<td><span id="topPremio1" class="hide"></span></td>
+			</tr>
+			<tr>
+				<td><span id="topUsuarios2" class="hide"></span></td>
+				<td><span id="topPremio2" class="hide"></span></td>
+			</tr>
+			<tr>
+				<td><span id="topUsuarios3" class="hide"></span></td>
+				<td><span id="topPremio3" class="hide"></span></td>
+			</tr>
+			<tr>
+				<td><span id="topUsuarios4" class="hide"></span></td>
+				<td><span id="topPremio4" class="hide"></span></td>
+			</tr>
+		</table>
+		
+	</div>
+	<div style="color: rgb(132, 138, 135); text-align: center;" >By _krod17</div>
 <script src="js/preguntas.js"></script>
 <script src="js/app.js"></script>
 </body>
