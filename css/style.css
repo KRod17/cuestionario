@@ -94,14 +94,16 @@ body{
 .btn{
 	padding: 15px 45px;
 	background-color: lightblue;
-	color: black;
+	color: rgb(0, 0, 0);
 	border: none;
 	border-radius: 20px;
 	font-family: sans-serif;
 	font-size: 20px;
 	cursor: pointer;
 	display: inline-block;
+	transition: 3s;
 }
+
 
 .quiz-box .numero-pregunta,
 .quiz-box .texto-pregunta,
@@ -138,13 +140,17 @@ body{
 	padding: 13px 15px;
 	font-size: 18px;
 	line-height: 22px;
-	color: black;
+	color: rgb(0, 0, 0);
 	border-radius: 10px;
 	margin-bottom: 10px;
 	cursor: pointer;
 	text-transform: capitalize;
 	opacity: 0;
 	animation:fadeIn 1s ease forwards;
+}
+
+.quiz-box .contenedor-opc .opcion:hover{
+	background-color: rgb(120, 180, 180);
 }
 
 @keyframes fadeIn{
@@ -277,6 +283,13 @@ body{
 	margin-bottom: 0px;
 	border-radius: 50%;
 }
+
+a:link {
+	text-decoration: none;
+	color: rgb(132, 138, 135);
+	text-align: center;
+}
+
 /* 
 KEIVYS JOSE RODRIGUEZ GONZALEZ
 IG: _krod17
