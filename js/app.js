@@ -14,6 +14,10 @@ const cronometro1 = document.querySelector(".cronometro");
 const color_fondo = document.getElementById('color_fondo')
 const topResultados = document.querySelector(".top");
 
+// SONIDOS
+const correctSound = new Audio('sound/correct-sound.mp3');
+const incorrectSound = new Audio('sound/incorrect-sound.mp3');
+
 //CONSTANTES PARA LOS NIVELES DE LAS PREGUNTAS
 const nivel1 = quiz;
 const nivel2 = quiz1;
@@ -80,6 +84,7 @@ function getResult(element){
 		// CAMBIAR A VERDE LA OPCION CORRECTA Y COLOCA UNA MARCA
 		element.classList.add("correct");
 		updateAnswerIndicador("correct");
+		correctSound.play();
 		respuestaCorrecta++;
 		level++;
 		subirDeCategoria();
@@ -88,6 +93,7 @@ function getResult(element){
 		//CAMBIAR A ROJO LA OPCION ERRONEA Y COLOCA UNA MARCA
 		element.classList.add("wrong");
 		updateAnswerIndicador("wrong");
+		incorrectSound.play();
 		respuestaIncorrecta++;
 		level++;
 		subirDeCategoria();
